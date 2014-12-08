@@ -1,7 +1,6 @@
 package controller;
 
-import model.Instruction;
-import model.RegisterLabels;
+import model.*;
 
 import java.util.StringTokenizer;
 
@@ -26,43 +25,50 @@ public class InstructionParser {
     }
 
     private Instruction parseInstruction(String mnemonic) {
-        StringTokenizer tokenizedLine = new StringTokenizer(mnemonic, " ,");
-        String type = tokenizedLine.nextToken();
-        int decomposed[] = null;
-        if (type.equals("add")) {
-            int rd = RegisterLabels.get(tokenizedLine.nextToken());
-            int rs = RegisterLabels.get(tokenizedLine.nextToken());
-            int rt = RegisterLabels.get(tokenizedLine.nextToken());
-            decomposed = new int[]{0, rs, rt, rd, 32};
-        } else if (type.equals("sub")) {
-            int rd = RegisterLabels.get(tokenizedLine.nextToken());
-            int rs = RegisterLabels.get(tokenizedLine.nextToken());
-            int rt = RegisterLabels.get(tokenizedLine.nextToken());
-            decomposed = new int[]{0, rs, rt, rd, 34};
-        } else if (type.equals("and")) {
-            int rd = RegisterLabels.get(tokenizedLine.nextToken());
-            int rs = RegisterLabels.get(tokenizedLine.nextToken());
-            int rt = RegisterLabels.get(tokenizedLine.nextToken());
-            decomposed = new int[]{0, rs, rt, rd, 36};
-        } else if (type.equals("or")) {
-
-        } else if (type.equals("nor")) {
-
-        } else if (type.equals("slt")) {
-
-        } else if (type.equals("lw")) {
-
-        } else if (type.equals("sw")) {
-
-        } else if (type.equals("beq")) {
-
-        } else if (type.equals("nop")) {
-
+        StringTokenizer tokenizedLine = new StringTokenizer(mnemonic, " ,()");
+        String nextLine = tokenizedLine.nextToken();
+        int type = InstructionTypes.get(nextLine);
+        Instruction instruction;
+        int rd, rs, rt, offset, label;
+        switch(type) {
+            case InstructionTypes.ADD:
+            case InstructionTypes.SUB:
+            case InstructionTypes.AND:
+            case InstructionTypes.OR:
+            case InstructionTypes.NOR:
+            case InstructionTypes.SLT:
+                rd = RegisterLabels.get(tokenizedLine.nextToken());
+                rs = RegisterLabels.get(tokenizedLine.nextToken());
+                rt = RegisterLabels.get(tokenizedLine.nextToken());
+                instruction = new Instruction(mnemonic, type, 0, rs, rt, rd, 0, FuncCodes.get(type));
+                break;
+            case InstructionTypes.LW:
+            case InstructionTypes.SW:
+                rt = RegisterLabels.get(tokenizedLine.nextToken());
+                offset = 0;
+                if (tokenizedLine.countTokens() == 2) {
+                    offset = Integer.parseInt(tokenizedLine.nextToken());
+                }
+                rs = RegisterLabels.get(tokenizedLine.nextToken());
+                instruction = new Instruction(mnemonic, type, OpCodes.get(type), rs, rt, offset);
+                break;
+            case InstructionTypes.BEQ:
+                rs = RegisterLabels.get(tokenizedLine.nextToken());
+                rt = RegisterLabels.get(tokenizedLine.nextToken());
+                label = Integer.parseInt(tokenizedLine.nextToken());
+                instruction = new Instruction(mnemonic, type, OpCodes.get(type), rs, rt, label);
+                break;
+            case InstructionTypes.NOP:
+                instruction = new Instruction(mnemonic, type, 0, 0, 0, 0, 0, 0);
+                break;
+            case InstructionTypes.EXIT:
+                instruction = new Instruction(mnemonic, type);
+                break;
+            default:
+                instruction = null;
         }
-        return new Instruction(mnemonic, decomposed);
+
+        return instruction;
     }
 
-    private int[] getRegisters(StringTokenizer tokenizedLine,) {
-
-    }
 }
