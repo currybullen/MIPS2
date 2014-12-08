@@ -40,7 +40,8 @@ public class InstructionParser {
                 rd = RegisterLabels.get(tokenizedLine.nextToken());
                 rs = RegisterLabels.get(tokenizedLine.nextToken());
                 rt = RegisterLabels.get(tokenizedLine.nextToken());
-                instruction = new Instruction(mnemonic, type, 0, rs, rt, rd, 0, FuncCodes.get(type));
+                instruction = new Instruction(mnemonic, type, 0, rs, rt, rd, 0,
+                        FuncCodes.get(type));
                 break;
             case InstructionTypes.LW:
             case InstructionTypes.SW:
@@ -50,13 +51,15 @@ public class InstructionParser {
                     offset = Integer.parseInt(tokenizedLine.nextToken());
                 }
                 rs = RegisterLabels.get(tokenizedLine.nextToken());
-                instruction = new Instruction(mnemonic, type, OpCodes.get(type), rs, rt, offset);
+                instruction = new Instruction(mnemonic, type, OpCodes.get(type),
+                        rs, rt, offset);
                 break;
             case InstructionTypes.BEQ:
                 rs = RegisterLabels.get(tokenizedLine.nextToken());
                 rt = RegisterLabels.get(tokenizedLine.nextToken());
                 label = Integer.parseInt(tokenizedLine.nextToken());
-                instruction = new Instruction(mnemonic, type, OpCodes.get(type), rs, rt, label);
+                instruction = new Instruction(mnemonic, type, OpCodes.get(type),
+                        rs, rt, label);
                 break;
             case InstructionTypes.NOP:
                 instruction = new Instruction(mnemonic, type, 0, 0, 0, 0, 0, 0);

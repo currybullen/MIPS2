@@ -9,6 +9,9 @@ import java.util.Map;
  */
 public class OpCodes {
     private static final Map<Integer, Integer> map;
+    public static final int LW = 35;
+    public static final int SW = 43;
+    public static final int BEQ = 4;
 
     static {
         Map<Integer, Integer> tempMap = new HashMap<Integer,Integer>();

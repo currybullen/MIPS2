@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by c12mkn on 2014-12-08.
  */
-public class InstructionMemory extends InstuctionMemory {
+public class InstructionMemory {
     private ArrayList<Instruction> memory;
 
     public InstructionMemory(InstructionParser instructionParser) {

@@ -1,7 +1,7 @@
 package controller;
 
 import model.InstructionMemory;
-import model.InstuctionMemory;
+import model.InstructionMemory;
 import model.RegisterLabels;
 
 /**
