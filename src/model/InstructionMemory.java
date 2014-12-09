@@ -19,7 +19,7 @@ public class InstructionMemory {
     }
 
     public Instruction getInstruction(int index) {
-        return memory.get(index);
+        return memory.get(index/4);
     }
 
     public int size() {
