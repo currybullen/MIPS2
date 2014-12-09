@@ -10,8 +10,7 @@ public class Control {
     private boolean branch;
     private boolean memRead;
     private boolean memtoReg;
-    private boolean aluOP0;
-    private boolean aluOP1;
+    private byte aluOP;
     private boolean memWrite;
     private boolean aluSrc;
     private boolean regWrite;
@@ -21,8 +20,7 @@ public class Control {
         branch = false;
         memRead = false;
         memtoReg = false;
-        aluOP0 = false;
-        aluOP1 = false;
+        aluOP = 0;
         memWrite = false;
         aluSrc = false;
         regWrite = false;
@@ -35,8 +33,7 @@ public class Control {
                 branch = false;
                 memRead = false;
                 memtoReg = false;
-                aluOP0 = true;
-                aluOP1 = false;
+                aluOP = 1;
                 memWrite = false;
                 aluSrc = false;
                 regWrite = true;
@@ -46,8 +43,7 @@ public class Control {
                 branch =false;
                 memRead = true;
                 memtoReg = true;
-                aluOP0 = false;
-                aluOP1 = false;
+                aluOP = 0;
                 memWrite = false;
                 aluSrc = true;
                 regWrite = true;
@@ -55,8 +51,7 @@ public class Control {
             case OpCodes.SW:
                 branch = false;
                 memRead = false;
-                aluOP0 = false;
-                aluOP1 = false;
+                aluOP = 0;
                 memWrite = true;
                 aluSrc = true;
                 regWrite = false;
@@ -64,8 +59,7 @@ public class Control {
             case OpCodes.BEQ:
                 branch = true;
                 memRead = false;
-                aluOP0 = true;
-                aluOP1 = false;
+                aluOP = 1;
                 memWrite = false;
                 aluSrc = false;
                 regWrite = false;
@@ -89,12 +83,8 @@ public class Control {
         return memtoReg;
     }
 
-    public boolean aluOP0() {
-        return aluOP0;
-    }
-
-    public boolean aluOP1() {
-        return aluOP1;
+    public byte aluOP() {
+        return aluOP;
     }
 
     public boolean memWrite() {
