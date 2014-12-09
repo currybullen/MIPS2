@@ -26,8 +26,7 @@ public class InstructionParser {
 
     private Instruction parseInstruction(String mnemonic) {
         StringTokenizer tokenizedLine = new StringTokenizer(mnemonic, " ,()");
-        String nextLine = tokenizedLine.nextToken();
-        int type = InstructionTypes.get(nextLine);
+        int type = InstructionTypes.get(tokenizedLine.nextToken());
         Instruction instruction;
         int rd, rs, rt, offset, label;
         switch(type) {

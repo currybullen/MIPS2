@@ -62,6 +62,13 @@ public class Control {
                 regWrite = false;
                 break;
             case OpCodes.BEQ:
+                branch = true;
+                memRead = false;
+                aluOP0 = true;
+                aluOP1 = false;
+                memWrite = false;
+                aluSrc = false;
+                regWrite = false;
                 break;
         }
     }
