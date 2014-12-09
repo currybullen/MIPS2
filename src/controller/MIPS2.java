@@ -27,8 +27,10 @@ public class MIPS2 {
     private void testPrint() {
         for (int i = 0; i < instructionMemory.size(); i++) {
             String mnemonic = instructionMemory.getInstruction(i).getMnemonic();
-            String decomposed = instructionMemory.getInstruction(i).getDecomposedString();
-            System.out.println("Mnemonic: " + mnemonic + " " + "Decomposed: " + decomposed);
+            String decomposed = instructionMemory.getInstruction(i).
+                    getDecomposedString();
+            System.out.println("Mnemonic: " + mnemonic + " " + "Decomposed: " +
+                    decomposed);
         }
     }
 }
