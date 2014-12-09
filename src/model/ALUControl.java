@@ -5,47 +5,43 @@ package model;
  */
 public class ALUControl {
 
-    public static final byte AND = 0;
-    public static final byte OR = 1;
-    public static final byte ADD = 2;
-    public static final byte SUBTRACT = 6;
-    public static final byte SETONLESSTHAN = 7;
-    public static final byte NOR = 12;
+
 
     static private byte ALUControl;
-
-    static public void processInstruction(Instruction molly) {
-       int op = molly.getDecomposed()[0];
-       int funct;
+    static private int funct;
+    static public void processInstruction(byte op) {
         switch(op){
             case 0:
-               ALUControl = ADD;
+               ALUControl = ALUCodes.ADD;
             case 1:
-                ALUControl = SUBTRACT;
+                ALUControl = ALUCodes.SUBTRACT;
             case 2:
-                funct = molly.getDecomposed()[molly.getDecomposed().length];
                 ALUControl = parseR(funct);
         }
+        funct = 0;
     }
 
     private static byte parseR(int func){
 
         switch(func) {
             case 32:
-                return ADD;
+                return ALUCodes.ADD;
             case 34:
-                return SUBTRACT;
+                return ALUCodes.SUBTRACT;
             case 36:
-                return AND;
+                return ALUCodes.AND;
             case 37:
-                return OR;
+                return ALUCodes.OR;
             case 38:
-                return SETONLESSTHAN;
+                return ALUCodes.SETONLESSTHAN;
             default:
                 return -1;
         }
     }
 
+    public void setFunct(int funct) {
+        this.funct = funct;
+    }
     public byte getALUOP() {
         return ALUControl;
     }
