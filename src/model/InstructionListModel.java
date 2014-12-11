@@ -30,5 +30,7 @@ public class InstructionListModel extends AbstractListModel {
             element += " " + instruction.getDecomposedString();
         }
         return element;
+        this.add
     }
+
 }
