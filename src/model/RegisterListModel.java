@@ -1,11 +1,13 @@
 package model;
 
 import javax.swing.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by c12mkn on 2014-12-11.
  */
-public class RegisterListModel extends AbstractListModel {
+public class RegisterListModel extends AbstractListModel implements Observer {
     private Registers registers;
 
     public RegisterListModel(Registers registers) {
@@ -91,5 +93,9 @@ public class RegisterListModel extends AbstractListModel {
         }
 
         return element;
+    }
+
+    public void update(Observable observable, Object object) {
+        fireContentsChanged(this, 0, getSize()-1);
     }
 }

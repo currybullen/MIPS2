@@ -1,11 +1,14 @@
 package model;
 
 import javax.swing.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by c12mkn on 2014-12-11.
  */
-public class InstructionListModel extends AbstractListModel {
+public class InstructionListModel extends AbstractListModel
+        implements Observer {
     private InstructionMemory instructionMemory;
 
     public InstructionListModel(InstructionMemory instructionMemory) {
@@ -30,7 +33,9 @@ public class InstructionListModel extends AbstractListModel {
             element += " " + instruction.getDecomposedString();
         }
         return element;
-        this.add
     }
 
+    public void update(Observable observable, Object object) {
+        fireContentsChanged(this, 0, getSize()-1);
+    }
 }

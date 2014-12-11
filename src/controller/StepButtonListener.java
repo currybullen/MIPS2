@@ -8,20 +8,24 @@ import java.awt.event.ActionListener;
  * Created by c12mkn on 2014-12-11.
  */
 public class StepButtonListener implements ActionListener {
+    private Simulator simulator;
     private JList instructionList;
 
-    public StepButtonListener(JList instructionList) {
+    public StepButtonListener(Simulator simulator, JList instructionList) {
+        this.simulator = simulator;
         this.instructionList = instructionList;
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
+        new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() {
+                simulator.step();
+                return null;
+            }
+        }.execute();
 
-        //Bör nog flyttas, markerade raden bör bero på PC:n
-        /*int selectedIndex = instructionList.getSelectedIndex();
-        if (selectedIndex + 1 <= instructionList.getModel().getSize()) {
-            instructionList.setSelectedIndex(selectedIndex + 1);
-        }*/
-
-        //Kör nästa instruktion här
+        instructionList.setSelectedIndex(simulator.getPC()/4);
     }
 }
