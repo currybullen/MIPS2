@@ -17,10 +17,10 @@ public class StepButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         //Bör nog flyttas, markerade raden bör bero på PC:n
-        int selectedIndex = instructionList.getSelectedIndex();
+        /*int selectedIndex = instructionList.getSelectedIndex();
         if (selectedIndex + 1 <= instructionList.getModel().getSize()) {
             instructionList.setSelectedIndex(selectedIndex + 1);
-        }
+        }*/
 
         //Kör nästa instruktion här
     }

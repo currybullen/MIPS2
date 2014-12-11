@@ -6,6 +6,8 @@ import model.*;
 import model.InstructionMemory;
 import view.GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 /**
@@ -15,11 +17,12 @@ public class MIPS2 {
     private InstructionMemory instructionMemory;
     private Registers registers;
     private DataMemory dataMemory;
-
+    private PC pc;
     public MIPS2(String fileName) {
         InstructionParser instructionParser = new InstructionParser(new
                 FileParser(fileName));
         instructionMemory = new InstructionMemory(instructionParser);
+        pc = new PC();
     }
 
     public static void main(String[] args) {
@@ -28,10 +31,10 @@ public class MIPS2 {
 
     private void go() {
         registers = new Registers();
-        //testInitializeRegisters();
-        //testPrintRegisters();
-        //testPrint();
-        run();
+        dataMemory = new DataMemory(1000);
+        testInitializeRegisters();
+        GUITest();
+        //run();
     }
 
     private void testPrint() {
@@ -63,12 +66,17 @@ public class MIPS2 {
         }
     }
 
-
+    public void step() {
+        cykle();
+    }
 
     public void run() {
-        Clock c = new Clock();
-        PC pc = new PC();
+        while(true) {
+            cykle();
+        }
+    }
 
+    public void cykle() {
         Add pcAdd = new Add();
         Add branchAdd = new Add();
 
@@ -93,21 +101,22 @@ public class MIPS2 {
         //ALU controller
         ALUControl aluControl = new ALUControl();
 
-        //Data memory
-        DataMemory dataMemory = new DataMemory(1024);
 
         //Stuff needed
         int readData1 = 0;
         int readData2 = 0;
         int aluResult = 0;
 
-        while(true) {
-            switch(c.getCykle()) {
+        for(int i = 0 ; i < 5 ; i++){
+            switch(i) {
                 //IFetch Instruction fetch and Update pc
                 case 0:
                     //Get the instruction at at pc current value
                     inst = instructionMemory.getInstruction(pc.getPC());
                     //Add a standard four to the pc
+                    if(inst.getType() == InstructionTypes.EXIT) {
+                        return;
+                    }
                     pcAdd.add(pc.getPC(), 4);
 
                     //Set the result to input a in multiplexer
@@ -183,7 +192,6 @@ public class MIPS2 {
                     break;
             }
 
-            c.tick();
         }
 
     }
@@ -203,5 +211,19 @@ public class MIPS2 {
         gui.getStepButton().addActionListener(new StepButtonListener(
                 gui.getInstructionList()));
         gui.setVisible(true);
+
+        gui.getRunButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                run();
+            }
+        });
+
+        gui.getStepButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                step();
+            }
+        });
     }
 }
