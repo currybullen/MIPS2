@@ -18,4 +18,8 @@ public class PC {
     public int getPC() {
         return counter;
     }
+
+    public void setPc(int val) {
+        this.counter = val;
+    }
 }
