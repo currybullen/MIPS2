@@ -17,4 +17,8 @@ public class DataMemory {
     public int loadWord(int address) {
         return memory[address/4];
     }
+
+    public int size() {
+        return memory.length;
+    }
 }

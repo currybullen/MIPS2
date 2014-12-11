@@ -2,7 +2,9 @@ package controller;
 
 import com.sun.org.apache.xpath.internal.operations.Mult;
 import model.*;
+import model.*;
 import model.InstructionMemory;
+import view.GUI;
 
 import java.util.Random;
 
@@ -12,6 +14,7 @@ import java.util.Random;
 public class MIPS2 {
     private InstructionMemory instructionMemory;
     private Registers registers;
+    private DataMemory dataMemory;
 
     public MIPS2(String fileName) {
         InstructionParser instructionParser = new InstructionParser(new
@@ -183,5 +186,22 @@ public class MIPS2 {
             c.tick();
         }
 
+    }
+
+    private void GUITest() {
+        InstructionListModel instructionListModel = new
+                InstructionListModel(instructionMemory);
+        RegisterListModel registerListModel = new RegisterListModel(registers);
+        MemoryListModel memoryListModel = new MemoryListModel(dataMemory.
+                size());
+
+        GUI gui = new GUI();
+        gui.getInstructionList().setModel(instructionListModel);
+        gui.getRegisterList().setModel(registerListModel);
+        gui.getMemoryList().setModel(memoryListModel);
+        gui.getInstructionList().setSelectedIndex(0);
+        gui.getStepButton().addActionListener(new StepButtonListener(
+                gui.getInstructionList()));
+        gui.setVisible(true);
     }
 }
