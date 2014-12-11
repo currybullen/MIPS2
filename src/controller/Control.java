@@ -1,101 +1,56 @@
 package controller;
 
+import model.ControlLines;
 import model.OpCodes;
 
 /**
  * Created by currybullen on 2014-12-08.
  */
 public class Control {
-    private boolean regDst;
-    private boolean branch;
-    private boolean memRead;
-    private boolean memtoReg;
-    private byte aluOP;
-    private boolean memWrite;
-    private boolean aluSrc;
-    private boolean regWrite;
+    private ControlLines controlLines;
 
-    public Control() {
-        regDst = false;
-        branch = false;
-        memRead = false;
-        memtoReg = false;
-        aluOP = 0;
-        memWrite = false;
-        aluSrc = false;
-        regWrite = false;
+    public Control(ControlLines controlLines) {
+        this.controlLines = controlLines;
     }
 
     public void setValues(int opCode) {
         switch(opCode) {
             case 0:
-                regDst = true;
-                branch = false;
-                memRead = false;
-                memtoReg = false;
-                aluOP = 1;
-                memWrite = false;
-                aluSrc = false;
-                regWrite = true;
+                controlLines.setRegDst(true);
+                controlLines.setBranch(false);
+                controlLines.setMemRead(false);
+                controlLines.setMemtoReg(false);
+                controlLines.setAluOP((byte) 1);
+                controlLines.setMemWrite(false);
+                controlLines.setAluSrc(false);
+                controlLines.setRegWrite(true);
                 break;
             case OpCodes.LW:
-                regDst = false;
-                branch =false;
-                memRead = true;
-                memtoReg = true;
-                aluOP = 0;
-                memWrite = false;
-                aluSrc = true;
-                regWrite = true;
+                controlLines.setRegDst(false);
+                controlLines.setBranch(false);
+                controlLines.setMemRead(true);
+                controlLines.setMemtoReg(true);
+                controlLines.setAluOP((byte) 0);
+                controlLines.setMemWrite(false);
+                controlLines.setAluSrc(true);
+                controlLines.setRegWrite(true);
                 break;
             case OpCodes.SW:
-                branch = false;
-                memRead = false;
-                aluOP = 0;
-                memWrite = true;
-                aluSrc = true;
-                regWrite = false;
+                controlLines.setBranch(false);
+                controlLines.setMemRead(false);
+                controlLines.setAluOP((byte) 0);
+                controlLines.setMemWrite(true);
+                controlLines.setAluSrc(true);
+                controlLines.setRegWrite(false);
                 break;
             case OpCodes.BEQ:
-                branch = true;
-                memRead = false;
-                aluOP = 1;
-                memWrite = false;
-                aluSrc = false;
-                regWrite = false;
+                controlLines.setBranch(true);
+                controlLines.setMemRead(false);
+                controlLines.setAluOP((byte) 1);
+                controlLines.setMemWrite(false);
+                controlLines.setAluSrc(false);
+                controlLines.setRegWrite(false);
                 break;
         }
-    }
-
-    public boolean regDst() {
-        return regDst;
-    }
-
-    public boolean branch() {
-        return branch;
-    }
-
-    public boolean memRead() {
-        return memRead;
-    }
-
-    public boolean memToReg() {
-        return memtoReg;
-    }
-
-    public byte aluOP() {
-        return aluOP;
-    }
-
-    public boolean memWrite() {
-        return memWrite;
-    }
-
-    public boolean aluSrc() {
-        return aluSrc;
-    }
-
-    public boolean regWrite() {
-        return regWrite;
     }
 }
