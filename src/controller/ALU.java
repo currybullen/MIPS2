@@ -55,7 +55,6 @@ public class ALU {
                 Integer.signum(reg1) != Integer.signum(sum)) {
             overflowFlag = true;
         }
-
         return sum;
     }
 

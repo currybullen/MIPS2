@@ -24,8 +24,12 @@ public class StepButtonListener implements ActionListener {
                 simulator.step();
                 return null;
             }
-        }.execute();
 
-        instructionList.setSelectedIndex(simulator.getPC()/4);
+            @Override
+            public void done() {
+                instructionList.setSelectedIndex(simulator.getPC()/4);
+            }
+
+        }.execute();
     }
 }

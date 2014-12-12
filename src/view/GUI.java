@@ -39,9 +39,12 @@ public class GUI extends JFrame {
 
         add(pcLabel, BorderLayout.NORTH);
 
-        add(new JScrollPane(instructionList), BorderLayout.WEST);
-        add(new JScrollPane(registerList), BorderLayout.CENTER);
-        add(new JScrollPane(memoryList), BorderLayout.EAST);
+        JPanel centerPanel = new JPanel(new GridLayout(1,3));
+
+        centerPanel.add(new JScrollPane(instructionList));
+        centerPanel.add(new JScrollPane(registerList));
+        centerPanel.add(new JScrollPane(memoryList));
+        add(centerPanel, BorderLayout.CENTER);
 
         JPanel bottomPanel = new JPanel();
 

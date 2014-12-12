@@ -9,13 +9,13 @@ import java.util.Random;
 /**
  * Created by currybullen on 2014-12-06.
  */
-public class MIPS2 {
+public class MIPS {
     private InstructionMemory instructionMemory;
     private Registers registers;
     private DataMemory dataMemory;
     private Simulator simulator;
 
-    public MIPS2(String fileName) {
+    public MIPS(String fileName) {
         InstructionParser instructionParser = new InstructionParser(new
                 FileParser(fileName));
         instructionMemory = new InstructionMemory(
@@ -26,7 +26,7 @@ public class MIPS2 {
     }
 
     public static void main(String[] args) {
-        new MIPS2(args[0]).go();
+        new MIPS(args[0]).go();
     }
 
     private void go() {
@@ -67,7 +67,8 @@ public class MIPS2 {
         ChangeBaseButtonListener changeBaseButtonListener =
                 new ChangeBaseButtonListener(gui.getChangeBaseButton());
         gui.getChangeBaseButton().addActionListener(changeBaseButtonListener);
-        gui.getRunButton().addActionListener(new StepButtonListener(simulator, gui.getInstructionList()));
+        gui.getRunButton().addActionListener(new RunButtonListener(simulator,
+                gui.getInstructionList()));
 
         //Add observers to the listeners.
         changeBaseButtonListener.addObserver(instructionListModel);

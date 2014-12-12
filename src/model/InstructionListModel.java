@@ -23,14 +23,16 @@ public class InstructionListModel extends AbstractListModel
     @Override
     public Object getElementAt(int index) {
         Instruction instruction = instructionMemory.getInstruction(index*4);
-        String element = instruction.getMnemonic();
+        String element = instruction.getMnemonic() + " |";
         if (SimulatorSettings.showHexadecimal) {
             for (int i = 0; i < instruction.getDecomposed().length; i++) {
                 element += " " + Integer.toHexString(instruction.
                         getDecomposed()[i]);
             }
         } else {
-            element += " " + instruction.getDecomposedString();
+            for (int i = 0; i < instruction.getDecomposed().length; i++) {
+                element += " " + instruction.getDecomposed()[i];
+            }
         }
         return element;
     }

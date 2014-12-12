@@ -14,12 +14,13 @@ public class Simulator {
     public Simulator(InstructionMemory instructionMemory, Registers registers,
                      DataMemory dataMemory) {
         this.instructionMemory = instructionMemory;
+        this.registers = registers;
         this.dataMemory = dataMemory;
         pc = new PC();
     }
 
 
-    public void step() {
+    public int step() {
         Add pcAdd = new Add();
         Add branchAdd = new Add();
 
@@ -58,7 +59,7 @@ public class Simulator {
                     inst = instructionMemory.getInstruction(pc.getPC());
                     //Add a standard four to the pc
                     if(inst.getType() == InstructionTypes.EXIT) {
-                        return;
+                        return -1;
                     }
                     pcAdd.add(pc.getPC(), 4);
 
@@ -135,11 +136,15 @@ public class Simulator {
                     break;
             }
         }
+
+        return 0;
     }
 
-    public void run() {
+    public int run() {
         while(true) {
-            step();
+            if (step() == -1) {
+                return -1;
+            }
         }
     }
 
