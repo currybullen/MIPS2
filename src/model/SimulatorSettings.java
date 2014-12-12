@@ -7,6 +7,6 @@ public class SimulatorSettings {
     public static boolean showHexadecimal;
 
     static {
-        showHexadecimal = true;
+        showHexadecimal = false;
     }
 }

@@ -1,8 +1,5 @@
 add $t0, $t1, $t2
 sub $s0, $t0, $v0
-beq $v0, $v1, 1
-beq $v0, $v1, -1
-beq $v0, $v0, -3
 sw $s1,20($s2)
 lw $s3,20($s2)
 nop

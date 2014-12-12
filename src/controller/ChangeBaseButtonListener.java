@@ -33,7 +33,7 @@ public class ChangeBaseButtonListener extends Observable
         }
 
         setChanged();
-        notifyObservers();
+        notifyObservers(-1);
         clearChanged();
     }
 }

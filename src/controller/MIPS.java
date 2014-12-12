@@ -18,8 +18,7 @@ public class MIPS {
     public MIPS(String fileName) {
         InstructionParser instructionParser = new InstructionParser(new
                 FileParser(fileName));
-        instructionMemory = new InstructionMemory(
-                instructionParser);
+        instructionMemory = new InstructionMemory(instructionParser);
         registers = new Registers();
         dataMemory = new DataMemory(1000);
         simulator = new Simulator(instructionMemory, registers, dataMemory);
@@ -38,7 +37,7 @@ public class MIPS {
     private void initializeRegisters() {
         Random random = new Random();
         for(int i = 0; i < 32; i++) {
-            int randomNumber = random.nextInt(Integer.MAX_VALUE);
+            int randomNumber = random.nextInt(100);
             if (random.nextInt(2) == 1) {
                 randomNumber = -randomNumber;
             }
@@ -50,16 +49,11 @@ public class MIPS {
         GUI gui = new GUI();
 
         //Create models for the lists.
-        InstructionListModel instructionListModel = new
-                InstructionListModel(instructionMemory);
-        RegisterListModel registerListModel = new RegisterListModel(registers);
-        MemoryListModel memoryListModel = new MemoryListModel(dataMemory.
-                size());
 
         //Connect the models to the lists.
-        gui.getInstructionList().setModel(instructionListModel);
-        gui.getRegisterList().setModel(registerListModel);
-        gui.getMemoryList().setModel(memoryListModel);
+        gui.getInstructionList().setModel(instructionMemory);
+        gui.getRegisterList().setModel(registers);
+        gui.getMemoryList().setModel(dataMemory);
 
         //Set listeners for the buttons.
         gui.getStepButton().addActionListener(new StepButtonListener(simulator,
@@ -69,11 +63,13 @@ public class MIPS {
         gui.getChangeBaseButton().addActionListener(changeBaseButtonListener);
         gui.getRunButton().addActionListener(new RunButtonListener(simulator,
                 gui.getInstructionList()));
+        gui.getResetButton().addActionListener(
+                new ResetButtonListener(simulator));
 
         //Add observers to the listeners.
-        changeBaseButtonListener.addObserver(instructionListModel);
-        changeBaseButtonListener.addObserver(registerListModel);
-        changeBaseButtonListener.addObserver(memoryListModel);
+        changeBaseButtonListener.addObserver(instructionMemory);
+        changeBaseButtonListener.addObserver(registers);
+        changeBaseButtonListener.addObserver(dataMemory);
 
         gui.getInstructionList().setSelectedIndex(0);
         gui.setVisible(true);

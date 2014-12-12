@@ -151,4 +151,10 @@ public class Simulator {
     public int getPC() {
         return pc.getPC();
     }
+
+    public void reset() {
+        registers.reset();
+        dataMemory.reset();
+        pc.setPc(0);
+    }
 }
