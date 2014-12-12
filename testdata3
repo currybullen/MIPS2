@@ -1,0 +1,13 @@
+add $t0, $t1, $t2
+sub $s0, $t0, $v0
+beq $v0, $v1, 1
+beq $v0, $v1, -1
+beq $v0, $v0, -3
+sw $s1,20($s2)
+lw $s3,20($s2)
+nop
+slt $s1,$s2,$s3
+and $s1,$s2,$s3
+or $s1,$s2,$s3
+nor $s1,$s2,$s3
+exit
