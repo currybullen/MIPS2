@@ -8,11 +8,19 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by c12mkn on 2014-12-08.
+ * A class mimicking the instruction memory of a MIPS processor. Extends the
+ * AbstractListModel for the sake of accessing it through a GUI. Implements
+ * the Observer interface to easily switch from hexadecimal format to decimal
+ * and back.
  */
 public class InstructionMemory extends AbstractListModel implements Observer {
     private ArrayList<Instruction> memory;
 
+    /**
+     * Creates an instruction memory object.
+     * @param instructionParser a reference to an instruction parser to
+     *                          fetch instructions from.
+     */
     public InstructionMemory(InstructionParser instructionParser) {
         memory = new ArrayList<Instruction>();
         Instruction instruction;
@@ -21,10 +29,16 @@ public class InstructionMemory extends AbstractListModel implements Observer {
         }
     }
 
-    public Instruction getInstruction(int index) {
-        return memory.get(index/4);
+    /**
+     * Returns the instruction at the given address.
+     * @param address the address of the instruction.
+     * @return the isntruction at the given address.
+     */
+    public Instruction getInstruction(int address) {
+        return memory.get(address/4);
     }
 
+    /*Returns the size of the data memory.*/
     @Override
     public int getSize() {
         return memory.size();
@@ -47,6 +61,8 @@ public class InstructionMemory extends AbstractListModel implements Observer {
         return element;
     }
 
+    /*Executed when the user presses the change base button to update the
+    * entire list of changed values.*/
     @Override
     public void update(Observable observable, Object object) {
         fireContentsChanged(this, 0, getSize()-1);

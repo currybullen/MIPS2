@@ -5,15 +5,25 @@ import model.*;
 import java.util.StringTokenizer;
 
 /**
- * Created by currybullen on 2014-12-07.
+ * A class used to parse instructions to be later stored in an instruction
+ * memory.
  */
 public class InstructionParser {
     private FileParser fileParser;
 
+    /**
+     * Constructs an InstructionParser.
+     * @param fileParser a FileParser linked to a text file of instructions.
+     */
     public InstructionParser(FileParser fileParser) {
         this.fileParser = fileParser;
     }
 
+    /**
+     * Returns the next instruction parsed by the file parser.
+     * @return the next instruction parsed by the file parser. Returns null
+     * if there are no more instructions to parse.
+     */
     public Instruction nextInstruction() {
         String line;
 
@@ -24,9 +34,21 @@ public class InstructionParser {
         }
     }
 
+    /**
+     * Parses an instruction from its mnemonic format.
+     * @param mnemonic the mnemonic format of the instruction.
+     * @return an Instruction object corresponding to the supplied mnemonic
+     * string.
+     */
     private Instruction parseInstruction(String mnemonic) {
+
+        /*Split the mnemonic string.*/
         StringTokenizer tokenizedLine = new StringTokenizer(mnemonic, " ,()");
+
+        /*Get the type of instruction.*/
         int type = InstructionTypes.get(tokenizedLine.nextToken());
+
+        /*Parse the instruction differently depending on its type.*/
         Instruction instruction;
         int rd, rs, rt, offset, label;
         switch(type) {

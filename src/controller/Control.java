@@ -4,15 +4,23 @@ import model.ControlLines;
 import model.OpCodes;
 
 /**
- * Created by currybullen on 2014-12-08.
+ * A class mimicking the Control unit of a MIPS processor. Works for all
+ * R-format instructions as well as the lw, sw and beq instructions.
  */
 public class Control {
     private ControlLines controlLines;
 
+    /**
+     * Constructs a Control object.
+     * @param controlLines a reference to a ControlLines object containing the
+     * control lines of the MIPS processor.
+     */
     public Control(ControlLines controlLines) {
         this.controlLines = controlLines;
     }
 
+    /*Sets the values of the control lines depending on the op code of the
+    * instruction.*/
     public void setValues(int opCode) {
         switch(opCode) {
             case 0:

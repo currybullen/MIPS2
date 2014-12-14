@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by c12mkn on 2014-12-08.
+ * A class containing op codes for different supported instructions.
  */
 public class OpCodes {
     private static final Map<Integer, Integer> map;
@@ -13,6 +13,7 @@ public class OpCodes {
     public static final int SW = 43;
     public static final int BEQ = 4;
 
+    /*The instruction codes are mapped to the instruction types.*/
     static {
         Map<Integer, Integer> tempMap = new HashMap<Integer,Integer>();
         tempMap.put(InstructionTypes.LW, 35);
@@ -21,6 +22,11 @@ public class OpCodes {
         map = Collections.unmodifiableMap(tempMap);
     }
 
+    /**
+     * Returns the op code for the given instruction type.
+     * @param type the instruction type.
+     * @return the op code.
+     */
     public static int get(int type) {
         return map.get(type);
     }

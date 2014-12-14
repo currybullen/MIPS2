@@ -81,7 +81,6 @@ public class Simulator {
 
                     //Performs the branch addition and sends the result to pc
                     // multiplexer second input.
-                    System.out.println(inst.getDecomposedString());
                     branchAdd.add((inst.getDecomposed()[inst.getDecomposed().length-1]<<2),pcAdd.getResult());
                     pcMultiplex.setInput(null, branchAdd.getResult());
 
@@ -138,14 +137,6 @@ public class Simulator {
         }
 
         return 0;
-    }
-
-    public int run() {
-        while(true) {
-            if (step() == -1) {
-                return -1;
-            }
-        }
     }
 
     public int getPC() {

@@ -5,24 +5,40 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by c12mkn on 2014-12-09.
+ * A class mimicking the registers of a MIPS processor.
  */
 public class Registers extends AbstractListModel implements Observer {
     private int[] values;
 
+    /**
+     * Constructs a Registers object with 32 registers.
+     */
     public Registers() {
         values = new int[32];
     }
 
+    /**
+     * Sets a register at a supplied index to a supplied value.
+     * @param index the index of the register.
+     * @param value the value to be set.
+     */
     public void setRegister(int index, int value) {
         values[index] = value;
         fireContentsChanged(this, index, index);
     }
 
+    /**
+     * Returns the register value from a given register.
+     * @param index the index of the register.
+     * @return the register value.
+     */
     public int getRegister(int index) {
         return values[index];
     }
 
+    /**
+     * Sets all of the register values to 0.
+     */
     public void reset() {
         for (int i = 0; i < values.length; i++) {
             values[i] = 0;
@@ -30,6 +46,7 @@ public class Registers extends AbstractListModel implements Observer {
         fireContentsChanged(this, 0, values.length-1);
     }
 
+    /*Returns the size of the data memory.*/
     @Override
     public int getSize() {
         return values.length;
@@ -111,6 +128,8 @@ public class Registers extends AbstractListModel implements Observer {
         return element;
     }
 
+    /*Executed when the user presses the change base button to update the
+    * entire list of changed values.*/
     @Override
     public void update(Observable observable, Object object) {
         fireContentsChanged(this, 0, getSize()-1);

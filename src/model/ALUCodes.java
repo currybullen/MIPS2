@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by c12mkn on 2014-12-09.
+ * Contains ALU control codes.
  */
 public class ALUCodes {
     public static final byte AND = 0;

@@ -5,11 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by c12mkn on 2014-12-08.
+ * A class of function codes for different R-format instructions.
  */
 public class FuncCodes {
     private static final Map<Integer, Integer> map;
 
+    /*A map of function codes corresponding to instruction types is created.*/
     static {
         Map<Integer, Integer> tempMap = new HashMap<Integer,Integer>();
         tempMap.put(InstructionTypes.ADD, 32);
@@ -21,6 +22,7 @@ public class FuncCodes {
         map = Collections.unmodifiableMap(tempMap);
     }
 
+    /*Returns the function code given the instruction.*/
     public static int get(int type) {
         return map.get(type);
     }

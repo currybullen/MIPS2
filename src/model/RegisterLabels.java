@@ -5,11 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by currybullen on 2014-12-07.
+ * Contains the actual register numbers for different register labels.
  */
 public class RegisterLabels {
     private static final Map<String, Integer> map;
 
+    /*Maps the register numbers to their mnemonic format.*/
     static {
         Map<String, Integer> tempMap = new HashMap<String,Integer>();
         tempMap.put("$zero", 0);
@@ -47,6 +48,11 @@ public class RegisterLabels {
         map = Collections.unmodifiableMap(tempMap);
     }
 
+    /**
+     * Returns the register number for the corresponding label.
+     * @param label the label e.g. $gp or $tk9.
+     * @return the register number.
+     */
     public static int get(String label) {
         return map.get(label);
     }

@@ -2,32 +2,47 @@ package model;
 
 import java.util.Arrays;
 
+
 /**
- * Created by currybullen on 2014-12-06.
+ * A class representing a MIPS instruction.
  */
 public class Instruction {
     protected String mnemonic;
     protected int type;
     protected int decomposed[];
 
+    /**
+     * Constructs an instruction.
+     * @param mnemonic the mnemonic representation of the instruction.
+     * @param type the type of instruction as defined in InstructionTypes.
+     * @param decomposed the decomposed representation of the instruction.
+     */
     public Instruction(String mnemonic, int type, int... decomposed) {
         this.mnemonic = mnemonic;
         this.type = type;
         this.decomposed = decomposed;
     }
 
+    /**
+     * Returns the mnemonic representation of the instruction.
+     * @return the mnemonic representation of the instruction.
+     */
     public String getMnemonic() {
         return mnemonic;
     }
 
+    /**
+     * Returns the decomposed representation of the instruction.
+     * @return the decomposed representation of the instruction.
+     */
     public int[] getDecomposed() {
         return decomposed;
     }
 
-    public String getDecomposedString() {
-        return Arrays.toString(decomposed);
-    }
-
+    /**
+     * Returns the type of the instruction as defined in InstructionTypes.
+     * @return the type of the instruction.
+     */
     public int getType() {
         return type;
     }
