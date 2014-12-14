@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
  * A class defining behaviour for when the user presses the reset button.
  */
 public class ResetButtonListener implements ActionListener {
-    private RunButtonListener runButtonListener;
-    private Simulator simulator;
-    private JList instructionList;
-    private JLabel pcLabel;
+    private final RunButtonListener runButtonListener;
+    private final Simulator simulator;
+    private final JList instructionList;
+    private final JLabel pcLabel;
 
     /**
      * Constructs a ResetButtonListener.

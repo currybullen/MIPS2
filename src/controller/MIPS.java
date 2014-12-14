@@ -13,10 +13,10 @@ import java.util.Random;
  * nor, slt, lw, sw, beq and nop.
  */
 public class MIPS {
-    private InstructionMemory instructionMemory;
-    private Registers registers;
-    private DataMemory dataMemory;
-    private Simulator simulator;
+    private final InstructionMemory instructionMemory;
+    private final Registers registers;
+    private final DataMemory dataMemory;
+    private final Simulator simulator;
 
     /**
      * Constructs a MIPS object.

@@ -12,9 +12,9 @@ import java.util.Observer;
  * the Observer interface to easily switch from hexadecimal format to decimal
  * and back.
  */
-public class DataMemory extends AbstractListModel implements Observer {
+public class DataMemory extends AbstractListModel<String> implements Observer {
     private int[] memory;
-    private ArrayList<Integer> changedValues;
+    private final ArrayList<Integer> changedValues;
 
     /**
      * Constructs a data memory of the given size in words.
@@ -22,7 +22,7 @@ public class DataMemory extends AbstractListModel implements Observer {
      */
     public DataMemory(int size) {
         memory = new int[size];
-        changedValues = new ArrayList<Integer>();
+        changedValues = new ArrayList<>();
     }
 
     /**
@@ -66,7 +66,7 @@ public class DataMemory extends AbstractListModel implements Observer {
     }
 
     @Override
-    public Object getElementAt(int index) {
+    public String getElementAt(int index) {
         String element = "";
         if (SimulatorSettings.showHexadecimal) {
             element += Integer.toHexString(changedValues.get(index)*4) + ": ";

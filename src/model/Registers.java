@@ -7,8 +7,8 @@ import java.util.Observer;
 /**
  * A class mimicking the registers of a MIPS processor.
  */
-public class Registers extends AbstractListModel implements Observer {
-    private int[] values;
+public class Registers extends AbstractListModel<String> implements Observer {
+    private final int[] values;
 
     /**
      * Constructs a Registers object with 32 registers.
@@ -53,7 +53,7 @@ public class Registers extends AbstractListModel implements Observer {
     }
 
     @Override
-    public Object getElementAt(int index) {
+    public String getElementAt(int index) {
         String element;
 
         switch(index) {

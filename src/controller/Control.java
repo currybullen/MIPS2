@@ -8,7 +8,7 @@ import model.OpCodes;
  * R-format instructions as well as the lw, sw and beq instructions.
  */
 public class Control {
-    private ControlLines controlLines;
+    private final ControlLines controlLines;
 
     /**
      * Constructs a Control object.

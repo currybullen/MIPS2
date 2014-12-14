@@ -9,11 +9,11 @@ import java.awt.event.ActionListener;
  * button.
  */
 public class RunButtonListener implements ActionListener {
-    private Simulator simulator;
-    private JList instructionList;
-    private JButton runButton;
-    private JButton stepButton;
-    private JLabel pcLabel;
+    private final Simulator simulator;
+    private final JList instructionList;
+    private final JButton runButton;
+    private final JButton stepButton;
+    private final JLabel pcLabel;
     private SwingWorker<Void, Void> swingWorker;
 
     /**

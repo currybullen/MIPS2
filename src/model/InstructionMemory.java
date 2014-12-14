@@ -13,8 +13,9 @@ import java.util.Observer;
  * the Observer interface to easily switch from hexadecimal format to decimal
  * and back.
  */
-public class InstructionMemory extends AbstractListModel implements Observer {
-    private ArrayList<Instruction> memory;
+public class InstructionMemory extends AbstractListModel<String>
+        implements Observer {
+    private final ArrayList<Instruction> memory;
 
     /**
      * Creates an instruction memory object.
@@ -22,7 +23,7 @@ public class InstructionMemory extends AbstractListModel implements Observer {
      *                          fetch instructions from.
      */
     public InstructionMemory(InstructionParser instructionParser) {
-        memory = new ArrayList<Instruction>();
+        memory = new ArrayList<>();
         Instruction instruction;
         while ((instruction = instructionParser.nextInstruction()) != null) {
             memory.add(instruction);
@@ -45,7 +46,7 @@ public class InstructionMemory extends AbstractListModel implements Observer {
     }
 
     @Override
-    public Object getElementAt(int index) {
+    public String getElementAt(int index) {
         Instruction instruction = memory.get(index);
         String element = instruction.getMnemonic() + " |";
         if (SimulatorSettings.showHexadecimal) {

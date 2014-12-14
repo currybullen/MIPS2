@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
  * memory.
  */
 public class InstructionParser {
-    private FileParser fileParser;
+    private final FileParser fileParser;
 
     /**
      * Constructs an InstructionParser.

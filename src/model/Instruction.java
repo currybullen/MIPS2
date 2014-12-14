@@ -1,15 +1,12 @@
 package model;
 
-import java.util.Arrays;
-
-
 /**
  * A class representing a MIPS instruction.
  */
 public class Instruction {
-    protected String mnemonic;
-    protected int type;
-    protected int decomposed[];
+    protected final String mnemonic;
+    protected final int type;
+    protected final int decomposed[];
 
     /**
      * Constructs an instruction.

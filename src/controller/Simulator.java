@@ -2,14 +2,11 @@ package controller;
 
 import model.*;
 
-/**
- * Created by currybullen on 2014-12-11.
- */
 public class Simulator {
-    private InstructionMemory instructionMemory;
-    private Registers registers;
-    private DataMemory dataMemory;
-    private PC pc;
+    private final InstructionMemory instructionMemory;
+    private final Registers registers;
+    private final DataMemory dataMemory;
+    private final PC pc;
 
     public Simulator(InstructionMemory instructionMemory, Registers registers,
                      DataMemory dataMemory) {

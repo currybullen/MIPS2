@@ -14,7 +14,7 @@ import java.util.Observable;
  */
 public class ChangeBaseButtonListener extends Observable
         implements ActionListener {
-    private JButton changeBaseButton;
+    private final JButton changeBaseButton;
 
     /**
      * Constructs a ChangeBaseButtonListener.
@@ -29,7 +29,7 @@ public class ChangeBaseButtonListener extends Observable
 
         /*If the GUI is currently displaying values in decimal, switch it
         * to hexadecimal.*/
-        if (SimulatorSettings.showHexadecimal == false) {
+        if (!SimulatorSettings.showHexadecimal) {
             SimulatorSettings.showHexadecimal = true;
             changeBaseButton.setText("Switch to decimal");
 
