@@ -1,4 +1,6 @@
-package model;
+package controller;
+
+import model.ALUCodes;
 
 /**
  * Created by c12arr on 2014-12-09.

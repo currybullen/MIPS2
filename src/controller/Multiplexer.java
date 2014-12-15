@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 /**
  * Created by c12arr on 2014-12-11.
