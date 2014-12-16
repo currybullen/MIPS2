@@ -2,7 +2,7 @@ add $t0, $t1, $t2
 sub $s0, $t0, $v0
 sw $s1,20($s2)
 lw $s3,20($s2)
-beq $s3, $s3, -2
+beq $s3, $s3, -4
 nop
 slt $s1,$s2,$s3
 and $s1,$s2,$s3

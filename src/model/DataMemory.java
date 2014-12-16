@@ -31,10 +31,15 @@ public class DataMemory extends AbstractListModel<String> implements Observer {
      * @param address the address to be stored at.
      */
     public void storeWord(int word, int address) {
+        int oldWord = memory[address/4];
         memory[address/4] = word;
-        changedValues.add(address/4);
-        fireIntervalAdded(this, changedValues.size() - 1,
-                changedValues.size() - 1);
+        if (!changedValues.contains(address/4)) {
+            changedValues.add(address/4);
+        }
+        if (word != oldWord) {
+            fireIntervalAdded(this, changedValues.size() - 1,
+                    changedValues.size() - 1);
+        }
     }
 
     /**
