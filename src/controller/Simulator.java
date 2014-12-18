@@ -106,10 +106,10 @@ public class Simulator {
                     pcMultiplex.setSignal(controlLines.isBranch() && alu.zeroFlag());
 
                     //Set the Mem to Reg write multiplexer signal
-                    regWriteMult.setSignal(controlLines.isMemtoReg());
+                    regWriteMult.setSignal(controlLines.isRegDst());
 
                     //Set the rite address multiplexer signal
-                    regMult.setSignal(controlLines.isRegDst());
+                    regMult.setSignal(!controlLines.isMemtoReg());
 
                     //Write to/from memory
                     if(controlLines.isMemWrite()) {
